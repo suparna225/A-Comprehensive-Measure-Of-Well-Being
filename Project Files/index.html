@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HDI Predictor</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 500px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 25px;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 15px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Human Development Index Predictor</h1>
+
+    <p>
+        Enter the country's development indicators
+        to predict its HDI score.
+    </p>
+
+    <form action="/predict" method="POST">
+
+        <label>Life Expectancy at Birth</label>
+        <input
+            type="number"
+            step="any"
+            name="life_expectancy"
+            placeholder="Example: 75"
+            required
+        >
+
+        <label>Expected Years of Schooling</label>
+        <input
+            type="number"
+            step="any"
+            name="expected_schooling"
+            placeholder="Example: 14"
+            required
+        >
+
+        <label>Mean Years of Schooling</label>
+        <input
+            type="number"
+            step="any"
+            name="mean_schooling"
+            placeholder="Example: 10"
+            required
+        >
+
+        <label>GNI Per Capita</label>
+        <input
+            type="number"
+            step="any"
+            name="gni"
+            placeholder="Example: 30000"
+            required
+        >
+
+        <button type="submit">
+            Predict HDI
+        </button>
+
+    </form>
+
+    {% if prediction is defined %}
+
+        <div class="result">
+            Predicted HDI Score: {{ prediction }}
+        </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
